@@ -163,7 +163,7 @@ public class XString {
 				this.mPinyinValue=sb.toString();
 			}
 			return this.mPinyinValue;
-		}
+		} 
 	}
 
 	public static boolean isCharacter(Character c) {
