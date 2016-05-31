@@ -32,6 +32,7 @@ public class ContactUtil {
 						cs.add(newContact);
 					}
 				}
+				lastContact=newContact;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -73,14 +74,15 @@ public class ContactUtil {
 		int id=cursor.getInt(ContactIdIndex);
 		if(lastContact==null||lastContact.mId!=id){
 			c=new ContactInfo();
-			c.mName=cursor.getString(NameIndex);
+			//c.mName=cursor.getString(NameIndex);
 			c.mPhotoId=cursor.getLong(PhotoIdIndex);
 			c.mId=id;
-			c.setSortKey(cursor.getString(SortKeyIndex));
+			//c.setSortKey(cursor.getString(SortKeyIndex));
+			c.setName(cursor.getString(NameIndex), cursor.getString(SortKeyIndex));
 		}else{
 			c=lastContact;
 		}
-		c.addNumber(cursor.getString(NumberIndex), cursor.getInt(TypeIndex));
+		c.addNumber(cursor.getString(NumberIndex).replace(" ", ""), cursor.getInt(TypeIndex));
 		return c;
 	}
 	static Pattern  PinyinPattern=Pattern.compile("\\d+.\\d+|\\w+");  

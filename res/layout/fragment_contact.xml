@@ -27,8 +27,22 @@
             android:id="@+id/cvCatalog"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            android:layout_margin="5dp"
             class="com.matteo.cc.ui.fragment.ContactFragment$CatalogView" >
         </view>
+        <TextView 
+            android:id="@+id/tvCatalog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="36sp"
+            android:padding="15dp"
+            android:background="@drawable/catalog_bg"
+            android:visibility="gone"
+            android:text="#"/>
     </FrameLayout>
 
 </LinearLayout>

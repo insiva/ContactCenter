@@ -2,20 +2,21 @@ package com.matteo.cc.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import com.matteo.cc.entity.utils.ContactUtil;
+import com.matteo.cc.model.XString;
 
 public class ContactInfo {
 	public static char OTHER_FIRST_CHAR='#';
 	
 	public int mId; // id
-	public String mName;
+	//public String mName;
 	public Long mPhotoId; // 图片id
-	private String mSortKey;
+	//private String mSortKey;
+	public XString mName;
 	public char mFirstChar;
 	public List<PhoneNumber> mPhoneNumbers;
-	public String mPinyinName;
+	//public String mPinyinName;
+	private XString mDisplayNumbers;
 	
 	public ContactInfo(){
 		this.mPhoneNumbers=new ArrayList<PhoneNumber>();
@@ -25,21 +26,33 @@ public class ContactInfo {
 		this.mPhoneNumbers.add(new PhoneNumber(number, type));
 	}
 	
-	public void setSortKey(String sortKey){
-		this.mSortKey=sortKey;
+	public void setName(String name,String sortKey){
+		//this.mSortKey=sortKey;
 		char firstChar=sortKey.charAt(0);
 		if(firstChar>='A'&&firstChar<='Z'){
 			this.mFirstChar=firstChar;
 		}else if(firstChar>='a'&&firstChar<='z'){
-			this.mFirstChar=(char)(firstChar-32);
+			this.mFirstChar=(char)(firstChar-('a'-'A'));
 		}else{
 			this.mFirstChar=OTHER_FIRST_CHAR;
 		}
-		this.mPinyinName=ContactUtil.findPinyin(this.mSortKey).toLowerCase(Locale.ENGLISH);
+		this.mName=new XString(name, sortKey);
+		//this.mPinyinName=ContactUtil.findPinyin(this.mSortKey).toLowerCase(Locale.ENGLISH);
 	}
 	
-	public String getSortKey(){
-		return this.mSortKey;
+	public XString getDisplayNumbers(){
+		if(XString.isEmpty(this.mDisplayNumbers)){
+			StringBuilder sb=new StringBuilder();
+			int s=this.mPhoneNumbers.size();
+			for(int i=0;i<s;i++){
+				sb.append(this.mPhoneNumbers.get(i).mNumber);
+				if(i<(s-1)){
+					sb.append(" | ");
+				}
+			}
+			this.mDisplayNumbers=new XString(sb.toString());//sb.toString();
+		}
+		return this.mDisplayNumbers;
 	}
 	
 	public class PhoneNumber{

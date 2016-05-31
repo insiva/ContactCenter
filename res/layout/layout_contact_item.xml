@@ -20,19 +20,19 @@
         android:clickable="true"
         android:padding="10dp"
         android:orientation="vertical" >
-
-        <TextView
+		<com.matteo.cc.ui.view.XTextView 
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:background="@color/transparent"
             android:layout_height="wrap_content" 
             android:textColor="@color/font_dark_gray"
-            android:textSize="18sp"/>
-        <TextView 
+            android:textSize="20sp" />
+		<com.matteo.cc.ui.view.XTextView 
             android:id="@+id/tvNumbers"
             android:layout_width="wrap_content"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:textColor="@color/font_dark_gray"
             android:textSize="12sp"/>
     </LinearLayout>
 
