@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/llDial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_selector"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="8dp" 
+        android:paddingBottom="3dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/bottom_bar_icon_dial_up_selected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/dial"
+            android:textColor="@color/green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_selector"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="8dp" 
+        android:paddingBottom="3dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/bottom_bar_icon_contact_unselected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/contact"
+            android:textColor="@color/font_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSms"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_selector"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="8dp" 
+        android:paddingBottom="3dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/bottom_bar_icon_sms_unselected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/sms"
+            android:textColor="@color/font_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSetting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/bottom_bar_selector"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="8dp" 
+        android:paddingBottom="3dp"  >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/bottom_bar_icon_setting_unselected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/setting"
+            android:textColor="@color/font_gray" />
+    </LinearLayout>
+
+</merge>

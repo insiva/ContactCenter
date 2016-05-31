@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/llDisplayNumber"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/lightgray_top_stroke"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:id="@+id/tvNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/dial_or_search_by_pinyin"
+                android:textColor="@color/green"
+                android:textSize="28sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/ivDeleteNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/delete_number_selector" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlDisplayNumber"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/lightgray_top_stroke" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/dial_or_search_by_pinyin"
+            android:textColor="@color/font_light_gray"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber123"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rlNumber1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_1" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_2" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_abc" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_3" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_def" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber456"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rlNumber4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_4" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_ghi" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_5" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_jkl" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_6" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_mno" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber789"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rlNumber7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_7" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_pqrs" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_8" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_tuv" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_9" />
+
+            <TextView
+                style="@style/dial_character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_wxyz" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rlNumberStar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_star" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumber0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_0" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlNumberSharp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_selector"
+            android:clickable="true" >
+
+            <TextView
+                style="@style/dial_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_sharp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/llDial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_bar_selector"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="3dp"
+            android:paddingTop="8dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/default_content_description"
+                android:src="@drawable/bottom_bar_icon_dial_down_selected" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:text="@string/dial"
+                android:textColor="@color/green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/lightgray_top_stroke"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/btnDial"
+                style="@style/default_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/dial_" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_bar_selector"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="3dp"
+            android:paddingTop="8dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/default_content_description"
+                android:src="@drawable/bottom_bar_icon_contact_unselected" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:text="@string/contact"
+                android:textColor="@color/font_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+</merge>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llBottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <view
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        class="com.matteo.cc.ui.fragment.DialFragment$MyLinearLayout" >
+
+        <com.matteo.cc.ui.view.XListView
+            android:id="@+id/lvCallLogs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.matteo.cc.ui.view.XListView>
+    </view>
+
+    <com.matteo.cc.ui.view.DialPad
+        android:id="@+id/dpPad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone" >
+    </com.matteo.cc.ui.view.DialPad>
+
+</LinearLayout>

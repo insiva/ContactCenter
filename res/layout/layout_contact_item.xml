@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TextView
+        android:id="@+id/tvCatalog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:paddingBottom="3dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/green"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/llContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/default_selector"
+        android:clickable="true"
+        android:padding="10dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content" 
+            android:textColor="@color/font_dark_gray"
+            android:textSize="18sp"/>
+        <TextView 
+            android:id="@+id/tvNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+</merge>

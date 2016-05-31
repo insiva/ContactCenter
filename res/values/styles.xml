@@ -1,0 +1,87 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.NoTitleBar">
+        <item name="android:background">@color/white</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="login_edittext">
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/login_edittext_bg</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="default_button">
+        <item name="android:background">@drawable/green_bg_corners_5_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="activity_dialog">
+
+        <!-- 去黑边 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 设置是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景 -->
+        <item name="android:background">@null</item>
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 是否变暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 点击空白部分activity不消失 -->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="dial_number">
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/font_dark_gray</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="dial_character">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textColor">@color/font_gray</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="search">
+        <item name="android:background">@drawable/search_et_bg</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/font_gray</item>
+        <item name="android:textColorHint">@color/font_light_gray</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">34dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+</resources>

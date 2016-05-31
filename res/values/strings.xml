@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">云呼叫中心</string>
+    <string name="default_content_description">Hello world!</string>
+    <string name="welcome_copyright">----------CopyRight----------</string>
+    <string name="welcome_company_copyright">中云数据 版权所有</string>
+    <string name="user_id">用户名</string>
+    <string name="password">密码</string>
+    <string name="login_">登 录</string>
+    <string name="please_input_user_id">请输入用户名！</string>
+    <string name="please_input_password">请输入密码！</string>
+    <string name="dial">拨号</string>
+    <string name="setting">设置</string>
+    <string name="sms">短信</string>
+    <string name="contact">名片</string>
+    <string name="dial_">拨 号</string>
+    <string name="number_0">0</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
+    <string name="number_9">9</string>
+    <string name="number_star">*</string>
+    <string name="number_sharp">#</string>
+    <string name="character_abc">abc</string>
+    <string name="character_def">def</string>
+    <string name="character_ghi">ghi</string>
+    <string name="character_jkl">jkl</string>
+    <string name="character_mno">mno</string>
+    <string name="character_pqrs">pqrs</string>
+    <string name="character_tuv">tuv</string>
+    <string name="character_wxyz">wxyz</string>
+    <string name="dial_or_search_by_pinyin">拨号或使用拼音搜索</string>
+    <string name="search_contacts">搜索通讯录</string>
+
+</resources>
