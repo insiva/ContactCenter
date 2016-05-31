@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.matteo.cc.utils.PinYinUtils;
+
 @SuppressLint("UseSparseArrays")
 public class XString {
 	private static HashMap<Integer, Character[]> IntegerDic;
@@ -52,15 +54,50 @@ public class XString {
 	}
 
 	private String mValue;
-	private Pinyin mPinyin;
+	//private Pinyin mPinyin;
+	private String mPinyinValue;
+	private String mIntegerValue;
+	private SearchResult mSearchResult;
+	private List<String> mCharList;
+	private List<String> mPinyinList;
+	private List<String> mIntegerList;
 
-	public XString(String value, String sortKey) {
+	public XString(String value) {
 		this.mValue = value;
-		this.mPinyin = new Pinyin(sortKey);
+		char[] cs=this.mValue.toCharArray();
+		this.mCharList=new ArrayList<String>();
+		this.mPinyinList=new ArrayList<String>();
+		this.mIntegerList=new ArrayList<String>();
+		for (char c : cs) {
+			String s=String.valueOf(c);
+			this.mCharList.add(s);
+			if(isCharacter(c)){
+				this.mPinyinList.add(s);
+			}else{
+				this.mPinyinList.add(PinYinUtils.getPingYin(s));
+			}
+		}
+		for (String pinyin : this.mPinyinList) {
+			cs=pinyin.toCharArray();
+			StringBuilder sb=new StringBuilder();
+			for (char c : cs) {
+				char lowerC=toLower(c);
+				if(CharacterDic.containsKey(lowerC)){
+					sb.append(CharacterDic.get(lowerC));
+				}else{
+					sb.append(c);
+				}
+			}
+			this.mIntegerList.add(sb.toString());
+		}
 	}
 	
-	public XString(String value){
-		this(value, value);
+	public SearchResult getSearchResult(){
+		return this.mSearchResult;
+	}
+	
+	public void clearSearchResult(){
+		this.mSearchResult=null;
 	}
 
 	@Override
@@ -69,103 +106,88 @@ public class XString {
 	}
 	
 	public String toPinyin(){
-		return this.mPinyin.toString();
+		if(TextUtils.isEmpty(this.mPinyinValue)){
+			StringBuilder sb=new StringBuilder();
+			for (String string : mPinyinList) {
+				sb.append(string);
+			}
+			this.mPinyinValue=sb.toString();
+		}
+		return this.mPinyinValue;
+	}
+	
+	public String toInteger(){
+		if(TextUtils.isEmpty(this.mIntegerValue)){
+			StringBuilder sb=new StringBuilder();
+			for (String string : mIntegerList) {
+				sb.append(string);
+			}
+			this.mIntegerValue=sb.toString();
+		}
+		return this.mIntegerValue;
+	}
+	
+	public boolean search(String key,boolean isAllCharacter){
+		this.mSearchResult=null;
+		int len=key.length();
+		int start=-1;
+		if((start=this.mValue.indexOf(key))>=0){
+			this.mSearchResult=new SearchResult(SearchResultField.VALUE,start,start+len);
+			return true;
+		}
+		if(isAllCharacter){
+			return this.searchByPinyin(key);
+		}
+		return false;
+	}
+	
+	public boolean searchByPinyin(String key){
+		int indexStart=this.toPinyin().indexOf(key);
+		if(indexStart<0){
+			return false;
+		}
+		int indexEnd=indexStart+key.length()-1;
+		int s=this.mCharList.size();
+		int pinyinStartI=0,pinyinEndI=0,start=-1,end=-1;
+		for(int i=0;i<s;i++){
+			String pinyin=this.mPinyinList.get(i);
+			pinyinEndI=pinyinStartI+pinyin.length()-1;
+			if(start<0&&indexStart>=pinyinStartI&&indexStart<=pinyinEndI){
+				start=i;
+			}
+			if(end<0&&indexEnd>=pinyinStartI&&indexEnd<=pinyinEndI){
+				end=i;
+				break;
+			}
+			pinyinStartI=pinyinEndI+1;
+		}
+		this.mSearchResult=new SearchResult(SearchResultField.PINYIN,start,end+1);
+		return true;
 	}
 
-	static class PinyinUnit {
-		String mValue;
-		String mPinyin;
-		String mPinyinNumbers;
-		boolean mIsPinyin;
-
-		PinyinUnit(String value, String pinyin, boolean isPinyin) {
-			this.mValue = value;
-			this.mPinyin = pinyin;
-			this.mIsPinyin = isPinyin;
-			StringBuilder sb = new StringBuilder();
-			char[] cs = this.mPinyin.toCharArray();
-			for (char c : cs) {
-				char lowerC=toLower(c);
-				if (CharacterDic.containsKey(lowerC)) {
-					sb.append(CharacterDic.get(lowerC));
-				} else {
-					sb.append(c);
-				}
+	public boolean searchByInteger(String key){
+		int indexStart=this.toInteger().indexOf(key);
+		if(indexStart<0){
+			return false;
+		}
+		int indexEnd=indexStart+key.length()-1;
+		int s=this.mCharList.size();
+		int pinyinStartI=0,pinyinEndI=0,start=-1,end=-1;
+		for(int i=0;i<s;i++){
+			String pinyin=this.mIntegerList.get(i);
+			pinyinEndI=pinyinStartI+pinyin.length()-1;
+			if(start<0&&indexStart>=pinyinStartI&&indexStart<=pinyinEndI){
+				start=i;
 			}
-			this.mPinyinNumbers = sb.toString();
+			if(end<0&&indexEnd>=pinyinStartI&&indexEnd<=pinyinEndI){
+				end=i;
+				break;
+			}
+			pinyinStartI=pinyinEndI+1;
 		}
-
-		@Override
-		public String toString() {
-			return this.mPinyin;
-		}
+		this.mSearchResult=new SearchResult(SearchResultField.PINYIN,start,end+1);
+		return true;
 	}
-
-	static class Pinyin {
-		List<PinyinUnit> mPinyinUnitList;
-		List<String> mStringUnitList;
-		private String mPinyinValue;
-
-		Pinyin(String sortKey) {
-			this.mPinyinUnitList = new ArrayList<PinyinUnit>();
-			this.mStringUnitList = new ArrayList<String>();
-			this.parseSortKey(sortKey);
-		}
-
-		private void parseSortKey(String sortKey) {
-			char[] cs = sortKey.toCharArray();
-			int l = cs.length;
-			StringBuilder sbPinyinUnit = new StringBuilder();
-			StringBuilder sbStringUnit = new StringBuilder();
-			for (int i = 0; i < l; i++) {
-				char c = cs[i];
-				if (!isCharacter(c)) {
-					for (int j = i - 1; j >= 0; j--) {
-						sbStringUnit.deleteCharAt(sbStringUnit.length() - 1);
-						char c1 = cs[j];
-						if (c1 != ' ') {
-							sbPinyinUnit.append(toLower(c1));
-						}else{//c1==' '
-						}
-						if((c1==' '&&j!=(i-1))||j==0){
-							String unit = sbStringUnit.toString();
-							if(!TextUtils.isEmpty(unit)){
-								this.mPinyinUnitList.add(new PinyinUnit(unit, unit,
-										false));
-								this.mStringUnitList.add(unit);
-							}
-							this.mPinyinUnitList.add(new PinyinUnit(String.valueOf(c), sbPinyinUnit.reverse().toString(), true));
-							this.mStringUnitList.add(String.valueOf(c));
-							sbPinyinUnit=new StringBuilder();
-							sbStringUnit=new StringBuilder();
-							break;
-						}
-					}
-				}else{
-					sbStringUnit.append(c);
-				}
-			}
-			String unit=sbStringUnit.toString();
-			if(!TextUtils.isEmpty(unit)){
-				this.mPinyinUnitList.add(new PinyinUnit(unit, unit,
-						false));
-				this.mStringUnitList.add(unit);
-			}
-		}
-		
-		@Override
-		public String toString() {
-			if(TextUtils.isEmpty(this.mPinyinValue)){
-				StringBuilder sb=new StringBuilder();
-				for (PinyinUnit pinyinUnit : mPinyinUnitList) {
-					sb.append(pinyinUnit.toString());
-				}
-				this.mPinyinValue=sb.toString();
-			}
-			return this.mPinyinValue;
-		} 
-	}
-
 	public static boolean isCharacter(Character c) {
 		if (c == null) {
 			return false;
@@ -195,5 +217,37 @@ public class XString {
 			}
 		}
 		return true;
+	}
+	
+	public enum SearchResultField{
+		NONE,VALUE,PINYIN
+	}
+	
+	public static class SearchResult{
+		private SearchResultField mResultField;
+		private int mStart,mEnd;
+		
+		private SearchResult(){
+			this.mResultField=SearchResultField.NONE;
+			this.mStart=-1;
+			this.mEnd=-1;
+		}
+		private SearchResult(SearchResultField field,int start,int end){
+			this.mResultField=field;
+			this.mStart=start;
+			this.mEnd=end;
+		}
+		
+		public int getStart(){
+			return this.mStart;
+		}
+		
+		public int getEnd(){
+			return this.mEnd;
+		}
+		
+		public SearchResultField getResultField(){
+			return this.mResultField;
+		}
 	}
 }

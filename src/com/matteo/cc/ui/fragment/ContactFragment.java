@@ -1,7 +1,5 @@
 package com.matteo.cc.ui.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,23 +7,20 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.matteo.cc.R;
-import com.matteo.cc.content.ContentManager;
-import com.matteo.cc.entity.ContactInfo;
+import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.XListView;
-import com.matteo.cc.ui.view.XTextView;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
 
@@ -40,7 +35,8 @@ public class ContactFragment extends BaseFragment {
 	@ViewInject(R.id.tvCatalog)
 	private TextView tvCatalog;
 	
-	private ContactAdapter mContactAdapter;
+	//private ContactAdapter mContactAdapter;
+	private ContactFragmentAdapter mAdapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,133 +48,29 @@ public class ContactFragment extends BaseFragment {
 	}
 	
 	private void init(){
-		this.mContactAdapter=new ContactAdapter();
-		this.lvContacts.setAdapter(this.mContactAdapter);
-		this.cvCatalog.setAdapter(this.mContactAdapter);
+		if(this.mAdapter==null){
+			this.mAdapter=new ContactFragmentAdapter(this.getActivity());
+		}
+		this.lvContacts.setAdapter(this.mAdapter);
+		this.cvCatalog.setAdapter(this.mAdapter);
 		this.cvCatalog.setTvCatalog(this.tvCatalog);
-		//String string=;
-		//XString s=new XString("Z TE 客服", "Z TE Ke 客 Fu 服");
-		//this.tvCatalog.setText(s.toPinyin());
+		this.mAdapter.setCatalogView(this.cvCatalog);
+		this.mAdapter.setListView(this.lvContacts);
+		this.etKeyword.addTextChangedListener(new SearchTextWatcher());
+		this.cvCatalog.setVisibility(this.mAdapter.showCatalog()?View.VISIBLE:View.GONE);
+		this.etKeyword.setVisibility(this.mAdapter.showSearchEt()?View.VISIBLE:View.GONE);
 	}
 	
-	class ContactAdapter extends BaseAdapter implements CatalogAdapter{
-		
-		private List<ContactInfo> mContacts;
-		private char[] mCatalogs;
-		
-		public ContactAdapter(){
-			this.mContacts=ContentManager.get().getContacts();
-			List<Character> catalogList=new ArrayList<Character>();
-			Character lastCatalog=null;
-			for (ContactInfo contact : this.mContacts) {
-				if(lastCatalog==null||lastCatalog!=contact.mFirstChar){
-					lastCatalog=contact.mFirstChar;
-					catalogList.add(lastCatalog);
-				}
-			}
-			int i=0;
-			this.mCatalogs=new char[catalogList.size()];
-			for (Character catalog : catalogList) {
-				this.mCatalogs[i++]=catalog;
-			}
+	public void setAdapter(ContactFragmentAdapter adapter){
+		if(this.mAdapter==null){
+			this.mAdapter=adapter;
+		}else{
+			this.mAdapter=adapter;
+			this.init();
 		}
-
-		@Override
-		public int getCount() {
-			return this.mContacts.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return this.mContacts.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ContactItem ci=null;
-			if(convertView==null){
-				ci=new ContactItem(getActivity());
-				convertView=ci;
-			}else{
-				ci=(ContactItem)convertView;
-			}
-			ci.setContact(this.mContacts, position);
-			return convertView;
-		}
-
-		@Override
-		public void onCatalogSelected(char catalog) {
-			int i=0;
-			boolean equaled=false;
-			for (ContactInfo contact : this.mContacts) {
-				if(contact.mFirstChar==catalog){
-					equaled=true;
-					break;
-				}
-				i++;
-			}
-			if(equaled){
-				ContactFragment.this.lvContacts.setSelection(i);
-			}
-		}
-
-		@Override
-		public char[] getCatalogs() {
-			return this.mCatalogs;
-		}
-		
+		//this.initByAdapter();
 	}
-	
-	class ContactItem extends LinearLayout implements OnClickListener{
-		
-		@ViewInject(R.id.tvCatalog)
-		private TextView tvCatalog;
-		@ViewInject(R.id.tvName)
-		private XTextView tvName;
-		@ViewInject(R.id.llContact)
-		private LinearLayout llContact;
-		@ViewInject(R.id.tvNumbers)
-		private XTextView tvNumbers;
-		
-		private ContactInfo mContact;
-		
-		public ContactItem(Context context) {
-			super(context);
-			View.inflate(getActivity(), R.layout.layout_contact_item, this);
-			ViewUtils.inject(this);
-			this.setOrientation(LinearLayout.VERTICAL);
-			this.llContact.setOnClickListener(this);
-		}
-		
-		public void setContact(List<ContactInfo> contacts,int position){
-			this.mContact=contacts.get(position);
-			if(position==0){
-				this.tvCatalog.setVisibility(View.VISIBLE);
-			}else{
-				ContactInfo lastContact=contacts.get(position-1);
-				if(lastContact.mFirstChar!=this.mContact.mFirstChar){
-					this.tvCatalog.setVisibility(View.VISIBLE);
-				}else{
-					this.tvCatalog.setVisibility(View.GONE);
-				}
-			}
-			this.tvCatalog.setText(String.valueOf(this.mContact.mFirstChar));
-			this.tvName.setText(this.mContact.mName);
-			this.tvNumbers.setText(this.mContact.getDisplayNumbers());
-		}
 
-		@Override
-		public void onClick(View v) {
-			
-		}
-	}
-	
-	
 	
 	@SuppressLint("ClickableViewAccessibility")
 	public static class CatalogView extends View{
@@ -248,9 +140,18 @@ public class ContactFragment extends BaseFragment {
 			}
 		}
 		
+		public void initCatalogs(){
+			if(this.mCatalogAdapter!=null){
+				this.mCatalogs=this.mCatalogAdapter.getCatalogs();
+				this.invalidate();
+			}
+		}
 		
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
+			if(this.mCatalogs.length==0){
+				return false;
+			}
 			float y=event.getY();
 			float r=y/this.mPerHeight;
 			int i=(int) Math.floor(r);
@@ -283,7 +184,7 @@ public class ContactFragment extends BaseFragment {
 		
 		public void setAdapter(CatalogAdapter adapter){
 			this.mCatalogAdapter=adapter;
-			this.mCatalogs=this.mCatalogAdapter.getCatalogs();
+			this.initCatalogs();
 		}
 		
 		public void setTvCatalog(TextView tv){
@@ -295,5 +196,26 @@ public class ContactFragment extends BaseFragment {
 	public static  interface CatalogAdapter{
 		public void onCatalogSelected(char catalog);
 		public char[] getCatalogs();
+	}
+	
+	class SearchTextWatcher implements TextWatcher{
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			ContactFragment.this.mAdapter.search(s.toString());
+		}
+		
 	}
 }

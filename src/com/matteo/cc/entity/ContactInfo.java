@@ -26,9 +26,10 @@ public class ContactInfo {
 		this.mPhoneNumbers.add(new PhoneNumber(number, type));
 	}
 	
-	public void setName(String name,String sortKey){
+	public void setName(String name){
 		//this.mSortKey=sortKey;
-		char firstChar=sortKey.charAt(0);
+		this.mName=new XString(name);
+		char firstChar=this.mName.toPinyin().charAt(0);
 		if(firstChar>='A'&&firstChar<='Z'){
 			this.mFirstChar=firstChar;
 		}else if(firstChar>='a'&&firstChar<='z'){
@@ -36,7 +37,6 @@ public class ContactInfo {
 		}else{
 			this.mFirstChar=OTHER_FIRST_CHAR;
 		}
-		this.mName=new XString(name, sortKey);
 		//this.mPinyinName=ContactUtil.findPinyin(this.mSortKey).toLowerCase(Locale.ENGLISH);
 	}
 	

@@ -6,6 +6,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts.Photo;
 
 import com.matteo.cc.entity.ContactInfo;
+import com.matteo.cc.model.XString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class ContactUtil {
 			c.mPhotoId=cursor.getLong(PhotoIdIndex);
 			c.mId=id;
 			//c.setSortKey(cursor.getString(SortKeyIndex));
-			c.setName(cursor.getString(NameIndex), cursor.getString(SortKeyIndex));
+			c.setName(cursor.getString(NameIndex));
 		}else{
 			c=lastContact;
 		}
@@ -95,5 +96,34 @@ public class ContactUtil {
 		}
 		String pinyin=sb.toString();
 		return pinyin;
+	}
+	
+	public static List<ContactInfo> search(String key,List<ContactInfo> contacts){
+		List<ContactInfo> result=new ArrayList<ContactInfo>();
+		boolean isAllCharacter=XString.isAllCharacter(key);
+		for (ContactInfo contact : contacts) {
+			contact.mName.clearSearchResult();
+			contact.getDisplayNumbers().clearSearchResult();
+			if(contact.mName.search(key, isAllCharacter)){
+				result.add(contact);
+			}else if(contact.getDisplayNumbers().search(key, isAllCharacter)){
+				result.add(contact);
+			}
+		}
+		return result;
+	}
+	
+	public static List<ContactInfo> searchByInteger(String key,List<ContactInfo> contacts){
+		List<ContactInfo> result=new ArrayList<ContactInfo>();
+		for (ContactInfo contact : contacts) {
+			contact.mName.clearSearchResult();
+			contact.getDisplayNumbers().clearSearchResult();
+			if(contact.mName.searchByInteger(key)){
+				result.add(contact);
+			}else if(contact.getDisplayNumbers().search(key, false)){
+				result.add(contact);
+			}
+		}
+		return result;
 	}
 }

@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import com.matteo.cc.Config;
 import com.matteo.cc.R;
 import com.matteo.cc.content.ContentManager;
 import com.matteo.cc.entity.CallLogInfo;
+import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.DialPad;
 import com.matteo.cc.ui.view.XListView;
@@ -37,8 +39,12 @@ public class DialFragment extends BaseFragment implements
 	DialPad dpPad;
 	@ViewInject(R.id.lvCallLogs)
 	XListView lvCallLogs;
+	@ViewInject(R.id.flContact)
+	FrameLayout flContact;
 	
 	private OnClickDialPadListener mOnClickDialPadListener;
+	private ContactFragment fragContact;
+	private ContactAdapter mContactAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +60,12 @@ public class DialFragment extends BaseFragment implements
 		this.dpPad.setOnClickDialPadListener(this);
 		this.llContent.setDialFragment(this);
 		this.lvCallLogs.setAdapter(new CallLogsAdapter());
+		//this.lvCallLogs.setVisibility(View.GONE);
+		this.fragContact=new ContactFragment();
+		this.mContactAdapter=new ContactAdapter(this.getActivity());
+		this.fragContact.setAdapter(this.mContactAdapter);
+		this.getFragmentManager().beginTransaction().add(R.id.flContact, this.fragContact).commit();
+		this.flContact.setVisibility(View.GONE);
 	}
 
 	public void setOnClickDialPadListener(OnClickDialPadListener listener) {
@@ -90,7 +102,14 @@ public class DialFragment extends BaseFragment implements
 
 	@Override
 	public void onNumberChanged(String oldNumber, String newNumber) {
-
+		if(TextUtils.isEmpty(newNumber)){
+			this.lvCallLogs.setVisibility(View.VISIBLE);
+			this.flContact.setVisibility(View.GONE);
+		}else{
+			this.lvCallLogs.setVisibility(View.GONE);
+			this.flContact.setVisibility(View.VISIBLE);
+		}
+		this.mContactAdapter.searchByInteger(newNumber);
 	}
 
 	public static class MyLinearLayout extends LinearLayout {
@@ -187,10 +206,8 @@ public class DialFragment extends BaseFragment implements
 			}
 			if(this.mCallLog.mType==CallLogInfo.MISSED_TYPE){
 				this.tvPerson.setTextColor(COLOR_MISSED_CALL);
-				//this.tvDate.setTextColor(COLOR_MISSED_CALL);
 			}else{
 				this.tvPerson.setTextColor(COLOR_PERSON);
-				//this.tvDate.setTextColor(COLOR_DATE);
 			}
 			this.ivDirect.setVisibility(this.mCallLog.mType==CallLogInfo.OUTGOING_TYPE?View.VISIBLE:View.INVISIBLE);
 			this.tvDate.setText(this.mCallLog.getDisplayDate());
@@ -203,6 +220,23 @@ public class DialFragment extends BaseFragment implements
 			}else{
 				
 			}
+		}
+	}
+	
+	class ContactAdapter extends ContactFragmentAdapter{
+		
+		public ContactAdapter(Context context) {
+			super(context);
+		}
+
+		@Override
+		public boolean showCatalog() {
+			return false;
+		}
+		
+		@Override
+		public boolean showSearchEt() {
+			return false;
 		}
 	}
 }
