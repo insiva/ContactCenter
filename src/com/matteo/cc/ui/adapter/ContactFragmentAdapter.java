@@ -7,21 +7,15 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.matteo.cc.R;
 import com.matteo.cc.content.ContentManager;
 import com.matteo.cc.entity.ContactInfo;
 import com.matteo.cc.entity.utils.ContactUtil;
 import com.matteo.cc.ui.fragment.ContactFragment.CatalogAdapter;
 import com.matteo.cc.ui.fragment.ContactFragment.CatalogView;
+import com.matteo.cc.ui.fragment.ContactFragment.ContactItem;
 import com.matteo.cc.ui.view.XListView;
-import com.matteo.cc.ui.view.XTextView;
-import com.matteo.cc.utils.view.ViewInject;
-import com.matteo.cc.utils.view.ViewUtils;
 
 public class ContactFragmentAdapter  extends BaseAdapter implements CatalogAdapter {
 
@@ -54,8 +48,8 @@ public class ContactFragmentAdapter  extends BaseAdapter implements CatalogAdapt
 		for (Character catalog : catalogList) {
 			this.mCatalogs[i++]=catalog;
 		}
-		if(this.mCatalogView!= null){
-			//this.mCatalogView.initCatalogs();
+		if(this.mCatalogView!= null&&this.showCatalog()){
+			this.mCatalogView.initCatalogs();
 		}
 	}
 	
@@ -85,7 +79,7 @@ public class ContactFragmentAdapter  extends BaseAdapter implements CatalogAdapt
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ContactItem ci=null;
 		if(convertView==null){
-			ci=new ContactItem(this.mContext);
+			ci=new ContactItem(this.mContext,this);
 			convertView=ci;
 		}else{
 			ci=(ContactItem)convertView;
@@ -148,51 +142,6 @@ public class ContactFragmentAdapter  extends BaseAdapter implements CatalogAdapt
 		return true;
 	}
 	
-class ContactItem extends LinearLayout implements OnClickListener{
-		
-		@ViewInject(R.id.tvCatalog)
-		private TextView tvCatalog;
-		@ViewInject(R.id.tvName)
-		private XTextView tvName;
-		@ViewInject(R.id.llContact)
-		private LinearLayout llContact;
-		@ViewInject(R.id.tvNumbers)
-		private XTextView tvNumbers;
-		
-		private ContactInfo mContact;
-		
-		public ContactItem(Context context) {
-			super(context);
-			View.inflate(context, R.layout.layout_contact_item, this);
-			ViewUtils.inject(this);
-			this.setOrientation(LinearLayout.VERTICAL);
-			this.llContact.setOnClickListener(this);
-		}
-		
-		public void setContact(List<ContactInfo> contacts,int position,boolean isSearchResult){
-			this.mContact=contacts.get(position);
-			if(ContactFragmentAdapter.this.showCatalog()){
-				if(position==0){
-					this.tvCatalog.setVisibility(View.VISIBLE);
-				}else{
-					ContactInfo lastContact=contacts.get(position-1);
-					if(lastContact.mFirstChar!=this.mContact.mFirstChar){
-						this.tvCatalog.setVisibility(View.VISIBLE);
-					}else{
-						this.tvCatalog.setVisibility(View.GONE);
-					}
-				}
-			}else{
-				this.tvCatalog.setVisibility(View.GONE);
-			}
-			this.tvCatalog.setText(String.valueOf(this.mContact.mFirstChar));
-			this.tvName.setText(this.mContact.mName,isSearchResult);
-			this.tvNumbers.setText(this.mContact.getDisplayNumbers(),isSearchResult);
-		}
 
-		@Override
-		public void onClick(View v) {
-			
-		}
-	}
+
 }

@@ -37,5 +37,13 @@
     <string name="character_wxyz">wxyz</string>
     <string name="dial_or_search_by_pinyin">拨号或使用拼音搜索</string>
     <string name="search_contacts">搜索通讯录</string>
+    <string name="basic_setting">基本设置</string>
+    <string name="other_setting">其他设置</string>
+    <string name="speaker_level_setting">耳机音量设置</string>
+    <string name="mic_level_setting">麦克风音量设置</string>
+    <string name="logout">注销</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="confirm_logout">确定注销并退出？</string>
 
 </resources>

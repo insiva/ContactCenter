@@ -40,6 +40,10 @@
             android:name=".ui.activity.dialog.WaitingDialog"
             android:theme="@style/activity_dialog" >
         </activity>
+        <activity
+            android:name=".ui.activity.dialog.ConfirmDialog"
+            android:theme="@style/activity_dialog" >
+        </activity>
     </application>
 
 </manifest>

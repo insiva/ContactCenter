@@ -3,6 +3,10 @@ package com.matteo.cc.entity;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.matteo.cc.utils.XTimeUtils;
+
+import android.text.TextUtils;
+
 public class SmsInfo {
 	public int mId;
 	public int mThreadId;
@@ -13,6 +17,14 @@ public class SmsInfo {
 	public int mStatus;
 	public int mType;
 	public String mBody;
+	private String mDisplayDate;
+	
+	public String getDisplayDate(){
+		if(TextUtils.isEmpty(this.mDisplayDate)){
+			this.mDisplayDate=XTimeUtils.formatDate(this.mDate);
+		}
+		return this.mDisplayDate;
+	}
 	
 	public static class SmsThreadInfo extends ArrayList<SmsInfo> implements Comparable<SmsThreadInfo>{
 
@@ -33,7 +45,7 @@ public class SmsInfo {
 
 		@Override
 		public int compareTo(SmsThreadInfo another) {
-			return this.mNewestSms.mDate.compareTo(another.mNewestSms.mDate);
+			return another.mNewestSms.mDate.compareTo(this.mNewestSms.mDate);
 		}
 	}
 }
