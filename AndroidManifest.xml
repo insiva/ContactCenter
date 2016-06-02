@@ -36,6 +36,12 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity" >
         </activity>
+        <activity android:name=".ui.activity.CallLogDetailActivity" >
+        </activity>
+        <activity android:name=".ui.activity.ContactDetailActivity" >
+        </activity>
+        <activity android:name=".ui.activity.SmsThreadDetailActivity">
+        </activity>
         <activity
             android:name=".ui.activity.dialog.WaitingDialog"
             android:theme="@style/activity_dialog" >

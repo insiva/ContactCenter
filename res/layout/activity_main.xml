@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:matteo="http://schemas.android.com/apk/res/com.matteo.cc" 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <com.matteo.cc.ui.view.TitleView
+        android:id="@+id/headerTitle"
+       matteo:showState="true"
+        matteo:showReturn="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpFragments"

@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.matteo.cc.R;
 import com.matteo.cc.entity.ContactInfo;
+import com.matteo.cc.ui.activity.ContactDetailActivity;
 import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.XListView;
@@ -287,7 +288,12 @@ public class ContactFragment extends BaseFragment {
 
 		@Override
 		public void onClick(View v) {
-
+			ContactDetailActivity.startActivity(getContext(), this.mContact.mId);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return this.getResources().getString(R.string.contact);
 	}
 }

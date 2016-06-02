@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:matteo="http://schemas.android.com/apk/res/com.matteo.cc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.matteo.cc.ui.view.TitleView
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        matteo:showReturn="true" />
+
+    <com.matteo.cc.ui.view.XListView
+        android:id="@+id/lvMsgs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        matteo:hasDivider="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp" 
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:padding="3dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/etBody"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:background="@drawable/gray_stroke_corners5"
+            android:layout_gravity="center"
+            android:hint="@null" />
+
+        <Button
+            android:id="@+id/btnSend"
+            style="@style/default_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:text="@string/send" />
+    </LinearLayout>
+
+</LinearLayout>

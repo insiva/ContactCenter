@@ -35,6 +35,7 @@ public class SmsUtil {
 				if(sms!=null){
 					if(st==null||st.mNewestSms.mThreadId!=sms.mThreadId){
 						st=new SmsThreadInfo();
+						st.mId=sms.mThreadId;
 						sts.add(st);
 					}
 					st.add(sms);
@@ -92,13 +93,22 @@ public class SmsUtil {
 		SmsInfo sms=new SmsInfo();
 		sms.mId=cursor.getInt(IdIndex);
 		sms.mThreadId=cursor.getInt(ThreadIdIndex);
-		sms.mNumber=cursor.getString(NumberIndex);
-		sms.mPersonName=cursor.getString(PersonIndex);
+		sms.setNumber(cursor.getString(NumberIndex));
+		sms.setContactId(cursor.getInt(PersonIndex));
 		sms.mRead=cursor.getInt(ReadIndex)==1;
 		sms.mStatus=cursor.getInt(StatusIndex);
 		sms.mType=cursor.getInt(TypeIndex);
 		sms.mBody=cursor.getString(BodyIndex);
 		sms.mDate=new Date(cursor.getLong(DateIndex));
 		return sms;
+	}
+	
+	public static SmsThreadInfo getSmsThreadById(int id,List<SmsThreadInfo> smsThreads){
+		for (SmsThreadInfo smsThread : smsThreads) {
+			if(smsThread.mId==id){
+				return smsThread;
+			}
+		}
+		return null;
 	}
 }

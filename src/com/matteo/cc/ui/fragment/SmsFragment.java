@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import com.matteo.cc.R;
 import com.matteo.cc.content.ContentManager;
 import com.matteo.cc.entity.SmsInfo.SmsThreadInfo;
+import com.matteo.cc.ui.activity.SmsThreadDetailActivity;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.XListView;
 import com.matteo.cc.utils.view.ViewInject;
@@ -103,18 +103,19 @@ public class SmsFragment extends BaseFragment{
 		
 		public void setSmsThread(SmsThreadInfo smsThread) {
 			this.mSmsThread = smsThread;
-			if(TextUtils.isEmpty(this.mSmsThread.mNewestSms.mPersonName)){
-				this.tvName.setText(this.mSmsThread.mNewestSms.mNumber);
-			}else{
-				this.tvName.setText(this.mSmsThread.mNewestSms.mPersonName);
-			}
+			this.tvName.setText(this.mSmsThread.getDisplayName());
 			this.tvDate.setText(this.mSmsThread.mNewestSms.getDisplayDate());
 			this.tvBody.setText(this.mSmsThread.mNewestSms.mBody);
 		}
 
 		@Override
 		public void onClick(View v) {
-			
+			SmsThreadDetailActivity.startActivity(getContext(), this.mSmsThread.mId);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return this.getResources().getString(R.string.sms);
 	}
 }

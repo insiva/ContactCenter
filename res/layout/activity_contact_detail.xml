@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:matteo="http://schemas.android.com/apk/res/com.matteo.cc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.matteo.cc.ui.view.TitleView
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        matteo:showReturn="true"
+        matteo:showState="true" />
+
+    <ScrollView
+        android:id="@+id/svDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/font_dark_gray"
+                android:layout_marginBottom="5dp"
+                android:textSize="24sp" />
+
+            <com.matteo.cc.ui.view.XListView
+                android:id="@+id/lvNumbers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                matteo:hasDivider="false"
+                matteo:inScrollView="true" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

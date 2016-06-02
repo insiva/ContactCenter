@@ -33,7 +33,7 @@ public class CallLogInfo {
 	
 	public String getDisplayDate(){
 		if(TextUtils.isEmpty(this.mDisplayDate)){
-			this.mDisplayDate=XTimeUtils.formatDate(this.mCallDate);
+			this.mDisplayDate=XTimeUtils.formatDateWithWeekDay(this.mCallDate);
 		}
 		return this.mDisplayDate;
 	}

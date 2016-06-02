@@ -18,7 +18,8 @@ public class ContactUtil {
 	       Phone.DISPLAY_NAME, Phone.NUMBER, Photo.PHOTO_ID,
 	       Phone.CONTACT_ID,Phone.SORT_KEY_PRIMARY ,Phone.LABEL,Phone.TYPE}; 
 	
-	private static String OrderCondition=String.format("%s asc", Phone.SORT_KEY_PRIMARY);
+	private static String OrderCondition=String.format("%s asc,%s asc,%s asc", Phone.SORT_KEY_PRIMARY,Phone.CONTACT_ID,Phone.TYPE);
+	
 	public static List<ContactInfo> readAllContacts(Context context){
 		List<ContactInfo> cs=new ArrayList<ContactInfo>();
 		Cursor cursor=null;
@@ -125,5 +126,45 @@ public class ContactUtil {
 			}
 		}
 		return result;
+	}
+	
+	public static String getTypeInfo(int type){
+		String info=null;
+		switch (type) {
+		case ContactInfo.TYPE_HOME:
+			info="家庭";
+			break;
+		case ContactInfo.TYPE_MOBILE:
+			info="手机";
+			break;
+		case ContactInfo.TYPE_WORK:
+			info="工作";
+			break;
+
+		default:
+			info="其他";
+			break;
+		}
+		return info;
+	}
+	
+	public static ContactInfo getContactByNumber(String number,List<ContactInfo> contacts){
+		for (ContactInfo contact : contacts) {
+			for (ContactInfo.PhoneNumber phoneNumber : contact.mPhoneNumbers) {
+				if(phoneNumber.mNumber.equals(number)){
+					return contact;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static ContactInfo getContactById(int id,List<ContactInfo> contacts){
+		for (ContactInfo contact : contacts) {
+			if(contact.mId==id){
+				return contact;
+			}
+		}
+		return null;
 	}
 }

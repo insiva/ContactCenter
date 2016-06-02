@@ -22,6 +22,7 @@ import com.matteo.cc.Config;
 import com.matteo.cc.R;
 import com.matteo.cc.content.ContentManager;
 import com.matteo.cc.entity.CallLogInfo;
+import com.matteo.cc.ui.activity.CallLogDetailActivity;
 import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.DialPad;
@@ -216,7 +217,7 @@ public class DialFragment extends BaseFragment implements
 		@Override
 		public void onClick(View v) {
 			if(v.getId()==R.id.ivDetail){
-				
+				CallLogDetailActivity.startActivity(getActivity(),this.mCallLog.mId);
 			}else{
 				
 			}
@@ -238,5 +239,10 @@ public class DialFragment extends BaseFragment implements
 		public boolean showSearchEt() {
 			return false;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return this.getResources().getString(R.string.dial);
 	}
 }

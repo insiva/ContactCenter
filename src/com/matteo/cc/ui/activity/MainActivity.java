@@ -19,6 +19,7 @@ import com.matteo.cc.ui.fragment.SettingFragment;
 import com.matteo.cc.ui.fragment.SmsFragment;
 import com.matteo.cc.ui.view.DialPad.OnClickDialPadListener;
 import com.matteo.cc.ui.view.MainBottomBar;
+import com.matteo.cc.ui.view.TitleView;
 import com.matteo.cc.ui.view.MainBottomBar.OnTitleIndexChangedListener;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
@@ -26,9 +27,12 @@ import com.matteo.cc.utils.view.ViewUtils;
 public class MainActivity extends BaseActivity implements
 		OnTitleIndexChangedListener,OnPageChangeListener,OnClickDialPadListener {
 	static final int FRAGMENT_COUNT = Constant.MODULE_COUNT;
+	static final int[] TITLE_RES_IDS={R.string.dial,R.string.contact,R.string.sms,R.string.setting};
 
 	@ViewInject(R.id.mbbFooter)
 	private MainBottomBar mbbFooter;
+	@ViewInject(R.id.headerTitle)
+	private TitleView headerTitle;
 	@ViewInject(R.id.vpFragments)
 	private ViewPager vpFragments;
 
@@ -76,6 +80,7 @@ public class MainActivity extends BaseActivity implements
 		this.vpFragments.setAdapter(new MyFragmentAdapter(this.getSupportFragmentManager()));
 		this.vpFragments.setOnPageChangeListener(this);
 		this.vpFragments.setOffscreenPageLimit(FRAGMENT_COUNT);
+		this.headerTitle.setTitle(TITLE_RES_IDS[this.mCurrFragmentIndex]);
 	}
 	
 	@Override
@@ -149,6 +154,7 @@ public class MainActivity extends BaseActivity implements
 			this.mbbFooter.setVisibility(View.VISIBLE);
 		}
 		this.mbbFooter.setTitleIndex(this.mCurrFragmentIndex);
+		this.headerTitle.setTitle(TITLE_RES_IDS[this.mCurrFragmentIndex]);
 	}
 
 	@Override
@@ -170,7 +176,6 @@ public class MainActivity extends BaseActivity implements
 
 	@Override
 	public void onNumberChanged(String oldNumber, String newNumber) {
-		// TODO Auto-generated method stub
 		
 	}
 }

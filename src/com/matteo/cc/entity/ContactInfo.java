@@ -3,11 +3,18 @@ package com.matteo.cc.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+
 import com.matteo.cc.model.XString;
 
 public class ContactInfo {
 	public static char OTHER_FIRST_CHAR='#';
 	
+	public static final int TYPE_HOME=Phone.TYPE_HOME;
+    public static final int TYPE_MOBILE = Phone.TYPE_MOBILE;
+    public static final int TYPE_WORK = Phone.TYPE_WORK;
+    public static final int TYPE_OTHER = Phone.TYPE_OTHER;
+    
 	public int mId; // id
 	//public String mName;
 	public Long mPhotoId; // 图片id
@@ -56,13 +63,36 @@ public class ContactInfo {
 	}
 	
 	public class PhoneNumber{
+
+		
+		private int mType;
+		public String mNumber;
 		
 		public PhoneNumber(String number,int type){
 			this.mNumber=number;
-			this.mType=type;
+			this.setType(type);
 		}
 		
-		public int mType;
-		public String mNumber;
+		private void setType(int type){
+			switch (type) {
+			case ContactInfo.TYPE_HOME:
+				this.mType=ContactInfo.TYPE_HOME;
+				break;
+			case ContactInfo.TYPE_MOBILE:
+				this.mType=ContactInfo.TYPE_MOBILE;
+				break;
+			case ContactInfo.TYPE_WORK:
+				this.mType=ContactInfo.TYPE_WORK;
+				break;
+
+			default:
+				this.mType=ContactInfo.TYPE_OTHER;
+				break;
+			}
+		}
+		
+		public int getType(){
+			return this.mType;
+		}
 	}
 }

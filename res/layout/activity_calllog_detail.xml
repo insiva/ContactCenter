@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:matteo="http://schemas.android.com/apk/res/com.matteo.cc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.matteo.cc.ui.view.TitleView
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        matteo:showReturn="true"
+        matteo:showState="true"
+        matteo:text="@string/calllog" />
+
+    <ScrollView
+        android:id="@+id/svDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/font_dark_gray"
+                android:textSize="22sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/font_gray"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ivDial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/default_selector"
+                    android:clickable="true"
+                    android:contentDescription="@string/default_content_description"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/dial" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/lightgray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/this_calllog"
+                android:textColor="@color/font_dark_gray"
+                android:textSize="22sp" />
+
+            <view
+                android:id="@+id/itemThisCallLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="com.matteo.cc.ui.activity.CallLogDetailActivity$CallLogDetailItem" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/lightgray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/recent_calllogs"
+                android:textColor="@color/font_dark_gray"
+                android:textSize="22sp" />
+
+            <com.matteo.cc.ui.view.XListView
+                android:id="@+id/lvRecentCallLogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                matteo:hasDivider="false"
+                matteo:inScrollView="true" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

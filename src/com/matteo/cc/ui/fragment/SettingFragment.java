@@ -144,4 +144,9 @@ public class SettingFragment extends BaseFragment implements OnClickListener,See
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public String toString() {
+		return this.getResources().getString(R.string.setting);
+	}
 }

@@ -64,4 +64,23 @@ public class CallLogUtil {
 		cl.mDuration=cursor.getLong(DurationIndex);
 		return cl;
 	}
+	
+	public static String getTypeInfo(int type){
+		String info=null;
+		switch (type) {
+		case CallLogInfo.INCOMING_TYPE:
+			info="呼入";
+			break;
+		case CallLogInfo.OUTGOING_TYPE:
+			info="呼出";
+			break;
+		case CallLogInfo.MISSED_TYPE:
+			info="未接";
+			break;
+
+		default:
+			break;
+		}
+		return info;
+	}
 }
