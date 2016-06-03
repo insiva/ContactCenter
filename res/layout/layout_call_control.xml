@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/llRecvCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/ivAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/answer_selector" />
+
+        <ImageView
+            android:id="@+id/ivReject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/hangup_selector" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivHangup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="@string/default_content_description"
+        android:src="@drawable/hangup_selector"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvHideDtmfPad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:padding="10dp"
+        android:text="@string/hide"
+        android:textColor="@drawable/default_textview_selector"
+        android:textSize="24sp" />
+
+</merge>

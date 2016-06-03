@@ -28,6 +28,8 @@ import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.DialPad;
 import com.matteo.cc.ui.view.XListView;
 import com.matteo.cc.ui.view.DialPad.OnClickDialPadListener;
+import com.matteo.cc.utils.SipUtils;
+import com.matteo.cc.utils.ToastUtils;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
 
@@ -46,6 +48,7 @@ public class DialFragment extends BaseFragment implements
 	private OnClickDialPadListener mOnClickDialPadListener;
 	private ContactFragment fragContact;
 	private ContactAdapter mContactAdapter;
+	private String mNumber;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,7 +101,15 @@ public class DialFragment extends BaseFragment implements
 
 	@Override
 	public void onDial() {
-
+		this.dial(this.mNumber);
+	}
+	
+	private void dial(String number){
+		if(TextUtils.isEmpty(number)){
+			ToastUtils.show(R.string.warning_number_cannot_be_empty);
+			return;
+		}
+		SipUtils.makeCall(this.getActivity(), number);
 	}
 
 	@Override
@@ -111,6 +122,7 @@ public class DialFragment extends BaseFragment implements
 			this.flContact.setVisibility(View.VISIBLE);
 		}
 		this.mContactAdapter.searchByInteger(newNumber);
+		this.mNumber=newNumber;
 	}
 
 	public static class MyLinearLayout extends LinearLayout {
@@ -219,7 +231,7 @@ public class DialFragment extends BaseFragment implements
 			if(v.getId()==R.id.ivDetail){
 				CallLogDetailActivity.startActivity(getActivity(),this.mCallLog.mId);
 			}else{
-				
+				DialFragment.this.dial(this.mCallLog.mNumber);
 			}
 		}
 	}

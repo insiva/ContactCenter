@@ -112,6 +112,10 @@ public class ContactFragment extends BaseFragment {
 
 		@Override
 		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			if(this.getVisibility()!=View.VISIBLE){
+				super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+				return;
+			}
 			if (this.mCatalogAdapter != null) {
 				int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 				int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -140,6 +144,9 @@ public class ContactFragment extends BaseFragment {
 		protected void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
 			// canvas.drawText(String.valueOf('#'), 10, 10, this.mPaint);
+			if(this.getVisibility()!=View.VISIBLE){
+				return;
+			}
 			float x = 0, y = 0, w = (float) this.mWidth;
 			int l = this.mCatalogs.length;
 			for (int i = 0; i < l; i++) {

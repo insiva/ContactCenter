@@ -53,6 +53,12 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="activity_call" parent="@style/AppTheme">
+
+        <!-- 设置是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
     <style name="dial_number">
         <item name="android:textSize">30sp</item>
         <item name="android:layout_marginTop">8dp</item>

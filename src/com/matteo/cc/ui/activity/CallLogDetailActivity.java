@@ -23,6 +23,8 @@ import com.matteo.cc.entity.utils.CallLogUtil;
 import com.matteo.cc.ui.base.BaseActivity;
 import com.matteo.cc.ui.view.TitleView;
 import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.utils.SipUtils;
+import com.matteo.cc.utils.ToastUtils;
 import com.matteo.cc.utils.XTimeUtils;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
@@ -91,13 +93,22 @@ public class CallLogDetailActivity extends BaseActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ivDial:
-			
+			this.dial(this.mCallLog.mNumber);
 			break;
 
 		default:
 			break;
 		}
 	}
+
+	private void dial(String number) {
+		if (TextUtils.isEmpty(number)) {
+			ToastUtils.show(R.string.warning_number_cannot_be_empty);
+			return;
+		}
+		SipUtils.makeCall(this, number);
+	}
+
 
 	public static void startActivity(Context context, int callLogId) {
 		Intent intent = new Intent(context, CallLogDetailActivity.class);

@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.matteo.cc.entity.utils.ContactUtil;
 import com.matteo.cc.ui.base.BaseActivity;
 import com.matteo.cc.ui.view.TitleView;
 import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.utils.SipUtils;
+import com.matteo.cc.utils.ToastUtils;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
 
@@ -46,8 +49,17 @@ public class ContactDetailActivity extends BaseActivity{
 		this.tvName.setText(this.mContact.mName.toString());
 		this.headerTitle.setTitle(this.mContact.mName.toString());
 	}
+
+
+	private void dial(String number) {
+		if (TextUtils.isEmpty(number)) {
+			ToastUtils.show(R.string.warning_number_cannot_be_empty);
+			return;
+		}
+		SipUtils.makeCall(this, number);
+	}
 	
-	static class PhoneNumberItem extends LinearLayout implements OnClickListener{
+	class PhoneNumberItem extends LinearLayout implements OnClickListener{
 		
 		@ViewInject(R.id.tvType)
 		TextView tvType;
@@ -93,7 +105,7 @@ public class ContactDetailActivity extends BaseActivity{
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.ivDial:
-				
+				ContactDetailActivity.this.dial(this.mPhoneNumber.mNumber);
 				break;
 
 			default:

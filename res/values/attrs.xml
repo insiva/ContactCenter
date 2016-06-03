@@ -8,6 +8,7 @@
         <attr name="actionSrc" format="reference" />
         <attr name="inScrollView" format="boolean" />
         <attr name="hasDivider" format="boolean" />
+        <attr name="dtmfNumber" format="string" />
     </declare-styleable>
 
 </resources>

@@ -50,5 +50,8 @@
     <string name="this_calllog">本次通话</string>
     <string name="recent_calllogs">最近通话</string>
     <string name="send">发送</string>
+    <string name="warning_number_cannot_be_empty">号码不能为空！</string>
+    <string name="dialling">正在拨号...</string>
+    <string name="hide">隐藏</string>
 
 </resources>

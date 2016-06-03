@@ -32,9 +32,11 @@
     <color name="transparent">#00000000</color>
     <color name="darkgray">#333333</color>
     <color name="halfblack">#50000000</color>
+    <color name="halfwhite">#80ffffff</color>
     <color name="neon_blue">#4D4DFF</color>
     <color name="blue">#1E61AE</color>
     <color name="green">#13a86b</color>
+    <color name="halfgreen">#8013a86b</color>
     <color name="darkgreen">#03a456</color>
     <color name="red">#FF0000</color>
     <color name="darkred">#CD0000</color>

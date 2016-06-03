@@ -40,7 +40,13 @@
         </activity>
         <activity android:name=".ui.activity.ContactDetailActivity" >
         </activity>
-        <activity android:name=".ui.activity.SmsThreadDetailActivity">
+        <activity android:name=".ui.activity.SmsThreadDetailActivity" >
+        </activity>
+        <activity
+            android:name=".sip.ui.activity.CallActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=".sip"
+            android:theme="@style/activity_call"  >
         </activity>
         <activity
             android:name=".ui.activity.dialog.WaitingDialog"

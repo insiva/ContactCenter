@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:matteo="http://schemas.android.com/apk/res/com.matteo.cc" >
+
+    <LinearLayout
+        android:id="@+id/llNumber123"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="1" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="2" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber456"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="4" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="5" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber789"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="7" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="8" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="9" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNumber0"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumberStar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="*" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumber0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="0" />
+
+        <com.matteo.cc.sip.ui.view.DtmfNumberView
+            android:id="@+id/vNumberSharp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            matteo:dtmfNumber="#" />
+    </LinearLayout>
+
+</merge>

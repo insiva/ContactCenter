@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/llFunctions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/ivHandsfree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/ivDtmf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:gravity="center"
+            android:src="@drawable/dtmf_selector" />
+
+        <ImageView
+            android:id="@+id/ivMute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="@string/default_content_description"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <com.matteo.cc.sip.ui.view.DtmfPadView
+        android:id="@+id/vDtmfPad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+</merge>
