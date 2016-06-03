@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,6 +19,7 @@ public class FunctionsView extends RelativeLayout implements OnClickListener {
 	private LinearLayout llFunctions;
 	private ImageView ivHandsfree, ivMute, ivDtmf;
 	private DtmfPadView vDtmfPad;
+	private Animation mAnimDtmfPad;
 
 	private boolean mHandsfree = false, mMute = false, mShowDtmfPad = false,
 			mCanShowDtmfPad = true;
@@ -39,6 +42,7 @@ public class FunctionsView extends RelativeLayout implements OnClickListener {
 		this.ivDtmf.setOnClickListener(this);
 		this.ivHandsfree.setOnClickListener(this);
 		this.ivMute.setOnClickListener(this);
+		this.mAnimDtmfPad=AnimationUtils.loadAnimation(this.getContext(), R.anim.dtmf_pad_appear);
 	}
 
 	private void displayViews() {
@@ -50,7 +54,17 @@ public class FunctionsView extends RelativeLayout implements OnClickListener {
 						: R.drawable.mute_disable_selector);
 		this.llFunctions.setVisibility(this.mShowDtmfPad ? View.GONE
 				: View.VISIBLE);
-		this.vDtmfPad.setVisibility(this.mShowDtmfPad?View.VISIBLE:View.GONE);
+		if(this.mShowDtmfPad){
+			if(this.vDtmfPad.getVisibility()!=View.VISIBLE){
+				this.vDtmfPad.setVisibility(View.VISIBLE);
+				this.vDtmfPad.setAnimation(AnimationUtils.loadAnimation(this.getContext(), R.anim.dtmf_pad_appear));
+			}
+		}else{
+			if(this.vDtmfPad.getVisibility()==VISIBLE){
+				this.vDtmfPad.setVisibility(View.GONE);
+				//this.vDtmfPad.startAnimation(this.mAnimDtmfPad);
+			}
+		}
 	}
 
 	public void setCanShowDtmfPad(boolean canShowDtmfPad) {
