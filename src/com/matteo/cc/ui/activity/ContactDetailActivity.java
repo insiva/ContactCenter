@@ -20,7 +20,7 @@ import com.matteo.cc.entity.ContactInfo;
 import com.matteo.cc.entity.utils.ContactUtil;
 import com.matteo.cc.ui.base.BaseActivity;
 import com.matteo.cc.ui.view.TitleView;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 import com.matteo.cc.utils.SipUtils;
 import com.matteo.cc.utils.ToastUtils;
 import com.matteo.cc.utils.view.ViewInject;

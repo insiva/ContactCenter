@@ -25,7 +25,7 @@ import com.matteo.cc.entity.ContactInfo;
 import com.matteo.cc.ui.activity.ContactDetailActivity;
 import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 import com.matteo.cc.ui.view.XTextView;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;

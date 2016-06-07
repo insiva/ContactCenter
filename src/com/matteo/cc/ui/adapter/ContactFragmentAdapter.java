@@ -15,7 +15,7 @@ import com.matteo.cc.entity.utils.ContactUtil;
 import com.matteo.cc.ui.fragment.ContactFragment.CatalogAdapter;
 import com.matteo.cc.ui.fragment.ContactFragment.CatalogView;
 import com.matteo.cc.ui.fragment.ContactFragment.ContactItem;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 
 public class ContactFragmentAdapter  extends BaseAdapter implements CatalogAdapter {
 

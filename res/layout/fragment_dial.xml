@@ -13,11 +13,10 @@
         android:layout_weight="1"
         class="com.matteo.cc.ui.fragment.DialFragment$MyLinearLayout" >
 
-        <com.matteo.cc.ui.view.XListView
+        <com.matteo.cc.ui.view.xlistview.XListView
             android:id="@+id/lvCallLogs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </com.matteo.cc.ui.view.XListView>
+            android:layout_height="match_parent"  />
         <FrameLayout
             
             android:id="@+id/flContact"

@@ -26,7 +26,7 @@ import com.matteo.cc.ui.activity.CallLogDetailActivity;
 import com.matteo.cc.ui.adapter.ContactFragmentAdapter;
 import com.matteo.cc.ui.base.BaseFragment;
 import com.matteo.cc.ui.view.DialPad;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 import com.matteo.cc.ui.view.DialPad.OnClickDialPadListener;
 import com.matteo.cc.utils.SipUtils;
 import com.matteo.cc.utils.ToastUtils;

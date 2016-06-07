@@ -22,7 +22,7 @@ import com.matteo.cc.entity.CallLogInfo;
 import com.matteo.cc.entity.utils.CallLogUtil;
 import com.matteo.cc.ui.base.BaseActivity;
 import com.matteo.cc.ui.view.TitleView;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 import com.matteo.cc.utils.SipUtils;
 import com.matteo.cc.utils.ToastUtils;
 import com.matteo.cc.utils.XTimeUtils;

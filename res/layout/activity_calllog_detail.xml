@@ -96,7 +96,7 @@
                 android:textColor="@color/font_dark_gray"
                 android:textSize="22sp" />
 
-            <com.matteo.cc.ui.view.XListView
+            <com.matteo.cc.ui.view.xlistview.XListView
                 android:id="@+id/lvRecentCallLogs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

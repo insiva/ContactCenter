@@ -17,7 +17,7 @@ import com.matteo.cc.content.ContentManager;
 import com.matteo.cc.entity.SmsInfo.SmsThreadInfo;
 import com.matteo.cc.ui.activity.SmsThreadDetailActivity;
 import com.matteo.cc.ui.base.BaseFragment;
-import com.matteo.cc.ui.view.XListView;
+import com.matteo.cc.ui.view.xlistview.XListView;
 import com.matteo.cc.utils.view.ViewInject;
 import com.matteo.cc.utils.view.ViewUtils;
 

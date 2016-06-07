@@ -32,7 +32,7 @@
                 android:layout_marginBottom="5dp"
                 android:textSize="24sp" />
 
-            <com.matteo.cc.ui.view.XListView
+            <com.matteo.cc.ui.view.xlistview.XListView
                 android:id="@+id/lvNumbers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.matteo.cc.ui.view;
+package com.matteo.cc.ui.view.xlistview;
 
 import com.matteo.cc.R;
 
@@ -37,6 +37,16 @@ public class XListView extends ListView {
 			this.setDividerHeight(0);
 		}
 		this.setSelector(new ColorDrawable(COLOR_TRANSPARENT));
+		this.initHeader();
+		this.initFooter();
+	}
+	
+	private void initHeader(){
+		//this.addHeaderView(v);
+	}
+	
+	private void initFooter(){
+		
 	}
 
 	@Override
