@@ -10,7 +10,7 @@
         android:layout_margin="10dp"
         android:background="@color/transparent"
         android:contentDescription="@string/default_content_description"
-        android:src="@drawable/outgo" />
+        android:src="@android:drawable/sym_call_outgoing" />
 
     <TextView
         android:id="@+id/tvPerson"
@@ -42,10 +42,10 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@color/transparent"
+        android:background="@drawable/default_selector"
         android:clickable="true"
         android:gravity="center"
         android:padding="12dp"
-        android:src="@drawable/calllog_detail_selector" />
+        android:src="@android:drawable/ic_menu_info_details" />
 
 </merge>
