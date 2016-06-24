@@ -96,6 +96,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 				LoginActivity.this.finish();
 				MainActivity.startActivity(LoginActivity.this);
 				PreferenceUtils.put(Constant.TOKEN, this.mData.optString(Constant.TOKEN));
+				PreferenceUtils.put(com.matteo.cc.sip.constant.Constant.SIP_ACCOUNT_KEY, this.mData.optJSONObject("agent").toString());
 			}else{
 				ToastUtils.show(this.mInfo);
 			}

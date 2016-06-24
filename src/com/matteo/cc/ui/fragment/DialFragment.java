@@ -1,5 +1,6 @@
 package com.matteo.cc.ui.fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.view.View.OnClickListener;
@@ -49,6 +50,7 @@ public class DialFragment extends BaseFragment implements
 	private ContactFragment fragContact;
 	private ContactAdapter mContactAdapter;
 	private String mNumber;
+	private CallLogsAdapter mCallLogsAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,11 +61,19 @@ public class DialFragment extends BaseFragment implements
 		this.init();
 		return fragment;
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		ContentManager.get().readNewestCallLogs(this.getActivity());
+		this.mCallLogsAdapter.refreshCallLogs();
+	}
 
 	private void init() {
 		this.dpPad.setOnClickDialPadListener(this);
 		this.llContent.setDialFragment(this);
-		this.lvCallLogs.setAdapter(new CallLogsAdapter());
+		this.mCallLogsAdapter=new CallLogsAdapter();
+		this.lvCallLogs.setAdapter(this.mCallLogsAdapter);
 		//this.lvCallLogs.setVisibility(View.GONE);
 		this.fragContact=new ContactFragment();
 		this.mContactAdapter=new ContactAdapter(this.getActivity());
@@ -152,7 +162,12 @@ public class DialFragment extends BaseFragment implements
 		private List<CallLogInfo> mCallLogs;
 		
 		public CallLogsAdapter(){
-			this.mCallLogs=ContentManager.get().getCallLogs();
+			this.mCallLogs=new ArrayList<CallLogInfo>(ContentManager.get().getCallLogs());
+		}
+		
+		public void refreshCallLogs(){
+			this.mCallLogs=new ArrayList<CallLogInfo>(ContentManager.get().getCallLogs());
+			this.notifyDataSetChanged();
 		}
 		
 		@Override

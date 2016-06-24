@@ -10,9 +10,11 @@ public class ContactUtils {
 		String name = null;
 		Cursor cursor = null;
 		try {
+			//String selectrion=String.format("%s='%s'", Phone.NUMBER, number);
 			cursor = context.getContentResolver().query(Phone.CONTENT_URI,
-					new String[] { Phone.DISPLAY_NAME }, null, null,
-					String.format("%s='%s'", Phone.NUMBER, number));
+					new String[] { Phone.DISPLAY_NAME }, Phone.NUMBER+"=?", 
+					new String[]{number},
+					null);
 			if (cursor.moveToFirst()) {
 				name = cursor.getString(0);
 			}

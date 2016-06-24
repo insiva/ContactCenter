@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,7 +18,7 @@ public class FunctionsView extends RelativeLayout implements OnClickListener {
 	private LinearLayout llFunctions;
 	private ImageView ivHandsfree, ivMute, ivDtmf;
 	private DtmfPadView vDtmfPad;
-	private Animation mAnimDtmfPad;
+	//private Animation mAnimDtmfPad;
 
 	private boolean mHandsfree = false, mMute = false, mShowDtmfPad = false,
 			mCanShowDtmfPad = true;
@@ -42,7 +41,7 @@ public class FunctionsView extends RelativeLayout implements OnClickListener {
 		this.ivDtmf.setOnClickListener(this);
 		this.ivHandsfree.setOnClickListener(this);
 		this.ivMute.setOnClickListener(this);
-		this.mAnimDtmfPad=AnimationUtils.loadAnimation(this.getContext(), R.anim.dtmf_pad_appear);
+		//this.mAnimDtmfPad=AnimationUtils.loadAnimation(this.getContext(), R.anim.dtmf_pad_appear);
 	}
 
 	private void displayViews() {

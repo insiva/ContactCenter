@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-
     <string name="app_name">云呼叫中心</string>
     <string name="default_content_description">Hello world!</string>
     <string name="welcome_copyright">----------CopyRight----------</string>
@@ -53,5 +52,10 @@
     <string name="warning_number_cannot_be_empty">号码不能为空！</string>
     <string name="dialling">正在拨号...</string>
     <string name="hide">隐藏</string>
-
+    <string name="call_out_failed">隐藏</string>
+    <string name="call_state_out_not_start">正在拨号...</string>
+    <string name="call_state_establishing">正在拨号...</string>
+    <string name="call_state_ring">等待接听...</string>
+    <string name="call_state_confirmed">正在通话...</string>
+    <string name="call_state_disconnected">通话结束...</string>
 </resources>

@@ -1,8 +1,12 @@
 package com.matteo.cc.ui.activity;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,8 +14,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 
+import com.matteo.cc.Config;
 import com.matteo.cc.Constant;
 import com.matteo.cc.R;
+import com.matteo.cc.sip.service.ISip;
+import com.matteo.cc.sip.service.SipService;
 import com.matteo.cc.ui.base.BaseActivity;
 import com.matteo.cc.ui.fragment.ContactFragment;
 import com.matteo.cc.ui.fragment.DialFragment;
@@ -45,13 +52,47 @@ public class MainActivity extends BaseActivity implements
 	private SettingFragment fragSetting;
 
 	private Fragment[] mFragments;
+	
+	private ServiceConnection mSipServiceConn=new ServiceConnection() {
+		
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			//mSipService=null;
+			Config.setSipService(null);
+		}
+		
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			ISip sipService=ISip.Stub.asInterface(service);
+			//mHandler.sendEmptyMessage(WHAT_SERVICE_CONNECTED);
+			Config.setSipService(sipService);
+			Intent broadcastIntent=new Intent(Constant.Action.SIP_SERVICE_CONNECTED);
+			MainActivity.this.sendBroadcast(broadcastIntent);
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		this.setContentView(R.layout.activity_main);
+		SipService.startService(this);
+		this.bindSipService();
 		ViewUtils.inject(this);
 		this.init();
+	}
+	
+	private void bindSipService(){
+		Intent intent=new Intent();
+		intent.setAction(com.matteo.cc.sip.constant.Constant.Action.SIP_SERVICE);
+		intent.setPackage(Constant.PACKAGE_NAME);
+		this.bindService(intent, this.mSipServiceConn, Service.BIND_AUTO_CREATE);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		this.unbindService(this.mSipServiceConn);
+		SipService.stopService(this);
 	}
 
 	private void init() {

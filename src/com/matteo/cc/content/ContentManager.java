@@ -1,5 +1,6 @@
 package com.matteo.cc.content;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
@@ -38,6 +39,14 @@ public class ContentManager {
 		this.mCallLogs=CallLogUtil.readAllCallLogs(context);
 		this.mContacts=ContactUtil.readAllContacts(context);
 		this.mSmsThreds=SmsUtil.readAllSms(context);
+	}
+	
+	public void readNewestCallLogs(Context context){
+		List<CallLogInfo> callLogs=CallLogUtil.readAllCallLogs(context);
+		Collections.reverse(callLogs);
+		for (CallLogInfo callLog : callLogs) {
+			this.mCallLogs.add(0, callLog);
+		}
 	}
 	
 	public static ContentManager get(){

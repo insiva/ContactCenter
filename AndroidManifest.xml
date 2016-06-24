@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="9"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,6 +15,21 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <permission android:name="com.matteo.cc.PERMISSION.SIP" />
+    
     <application
         android:name=".CcApplication"
         android:allowBackup="true"
@@ -45,7 +60,6 @@
         <activity
             android:name=".sip.ui.activity.CallActivity"
             android:launchMode="singleTask"
-            android:taskAffinity=".sip"
             android:theme="@style/activity_call"  >
         </activity>
         <activity
@@ -56,6 +70,13 @@
             android:name=".ui.activity.dialog.ConfirmDialog"
             android:theme="@style/activity_dialog" >
         </activity>
+        <service android:name="com.matteo.cc.sip.service.SipService"
+            android:permission="com.matteo.cc.PERMISSION.SIP"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.matteo.cc.sip.service.SIP_SERVICE"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

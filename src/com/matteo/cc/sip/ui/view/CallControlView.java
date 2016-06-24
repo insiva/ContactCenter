@@ -2,6 +2,7 @@ package com.matteo.cc.sip.ui.view;
 
 import com.matteo.cc.R;
 import com.matteo.cc.sip.constant.Constant;
+import com.matteo.cc.sip.model.XCallInfo;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +21,7 @@ public class CallControlView extends RelativeLayout implements OnClickListener {
 	private TextView tvHideDtmfPad;
 
 	private CallControlListener mCallControlListener;
-	private int mCallState = 0;
+	private XCallInfo mCallInfo;
 	private boolean mShowTvHideDtmfPad = false;
 
 	public CallControlView(Context context, AttributeSet attrs) {
@@ -28,7 +29,8 @@ public class CallControlView extends RelativeLayout implements OnClickListener {
 		View.inflate(context, R.layout.layout_call_control, this);
 		this.setBackgroundColor(Color.TRANSPARENT);
 		this.findViews();
-		this.displayViews();
+		this.updateCallState();
+		// this.displayViews();
 	}
 
 	private void findViews() {
@@ -43,28 +45,34 @@ public class CallControlView extends RelativeLayout implements OnClickListener {
 		this.tvHideDtmfPad.setOnClickListener(this);
 	}
 
-	private void displayViews() {
+	public void updateCallState() {
+		this.updateCallState(null);
+	}
+
+	public void updateCallState(XCallInfo callInfo) {
 		this.tvHideDtmfPad.setVisibility(this.mShowTvHideDtmfPad ? View.VISIBLE
 				: View.GONE);
-		if (this.mCallState != 0) {
-			int direct = this.mCallState & Constant.DIRECT_MASK;
-			int state = this.mCallState & Constant.STATE_MASK;
-			if (direct == Constant.Direct.OUT) {
+		if (callInfo == null) {
+			return;
+		}
+		this.mCallInfo = callInfo;
+		int direct =this.mCallInfo.getDirect();
+		int state = this.mCallInfo.getState();
+		if (direct == Constant.CallDirect.OUT) {
+			this.llRecvCall.setVisibility(View.GONE);
+			this.ivHangup.setVisibility(View.VISIBLE);
+		} else { // IN
+			switch (state) {
+			case Constant.CallState.RING:
+			case Constant.CallState.ESTABLISHING:
+				this.llRecvCall.setVisibility(View.VISIBLE);
+				this.ivHangup.setVisibility(View.GONE);
+				break;
+
+			default:
 				this.llRecvCall.setVisibility(View.GONE);
 				this.ivHangup.setVisibility(View.VISIBLE);
-			} else { // IN
-				switch (state) {
-				case Constant.State.RING:
-				case Constant.State.ESTABLISHING:
-					this.llRecvCall.setVisibility(View.VISIBLE);
-					this.ivHangup.setVisibility(View.GONE);
-					break;
-
-				default:
-					this.llRecvCall.setVisibility(View.GONE);
-					this.ivHangup.setVisibility(View.VISIBLE);
-					break;
-				}
+				break;
 			}
 		}
 	}
@@ -73,19 +81,15 @@ public class CallControlView extends RelativeLayout implements OnClickListener {
 		this.mCallControlListener = listener;
 	}
 
-	public void setCallState(int callState) {
-		this.mCallState = callState;
-		this.displayViews();
-	}
-
 	public void hideTvHideDtmfPad() {
 		this.mShowTvHideDtmfPad = false;
-		this.displayViews();
+		// this.displayViews();
+		this.updateCallState();
 	}
 
 	public void showTvHideDtmfPad() {
 		this.mShowTvHideDtmfPad = true;
-		this.displayViews();
+		this.updateCallState();
 	}
 
 	@Override

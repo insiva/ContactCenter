@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CallLogUtil {
+	
+	private static long mReadedTime=0;
 
 	public static List<CallLogInfo> readAllCallLogs(Context context) {
 		List<CallLogInfo> callLogs = new ArrayList<CallLogInfo>();
@@ -20,7 +22,8 @@ public class CallLogUtil {
 		ContentResolver contentResolver = context.getContentResolver();
 		try {
 			cursor = contentResolver.query(CallLog.Calls.CONTENT_URI, null,
-					null, null, CallLog.Calls.DATE + " desc");
+					Calls.DATE+">?", new String[]{Long.toString(mReadedTime)}, CallLog.Calls.DATE + " desc");
+			mReadedTime=System.currentTimeMillis();
 			while (cursor.moveToNext()) {
 				CallLogInfo cl=getByCursor(cursor);
 				if(cl!=null){

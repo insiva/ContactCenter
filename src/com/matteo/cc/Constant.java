@@ -8,4 +8,9 @@ public class Constant {
 	
 	public static final String TOKEN="token";
 	public static final int MODULE_COUNT=4;
+	public static final String PACKAGE_NAME="com.matteo.cc";
+	
+	public interface Action{
+		public static final String SIP_SERVICE_CONNECTED="com.matteo.cc.SIP_SERVICE_CONNECTED";
+	}
 }
