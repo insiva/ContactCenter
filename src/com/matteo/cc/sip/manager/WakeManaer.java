@@ -25,7 +25,7 @@ public class WakeManaer {
 		// 点亮屏幕
 		mWakeLock.acquire();
 		// 释放
-		//mWakeLock.release();
+		mWakeLock.release();
 	}
 	
 	public static void lock(Context context){
