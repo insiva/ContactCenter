@@ -16,6 +16,10 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
 public class SipService extends Service {
+	public static final int START_TYPE_REGISTER=1;
+	public static final int START_TYPE_CANCEL_REGISTER=2;
+	
+	private static final String START_TYPE_KEY="start_key";
 	private static final int WHAT_INCOMING_CALL=0x001;
 	private PjService mPjServiceInstance;
 	private SipAccount mSipAccount;
@@ -78,14 +82,20 @@ public class SipService extends Service {
 		super.onCreate();
 		this.mSipBinder=new SipBinder();
 		this.mPjServiceInstance=PjService.createInstance(this);
-		SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(this);
-		String sipAccountJson=preferences.getString(Constant.SIP_ACCOUNT_KEY, null);
-		this.mSipAccount=SipAccount.readJson(sipAccountJson);
 	}
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		this.mPjServiceInstance.register(this.mSipAccount);
+		int type=intent.getIntExtra(START_TYPE_KEY, START_TYPE_REGISTER);
+		if(type==START_TYPE_REGISTER){
+			SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(this);
+			String sipAccountJson=preferences.getString(Constant.SIP_ACCOUNT_KEY, null);
+			this.mSipAccount=SipAccount.readJson(sipAccountJson);
+			this.mPjServiceInstance.register(this.mSipAccount);
+		}else if(type==START_TYPE_CANCEL_REGISTER){
+			this.mPjServiceInstance.cancelRegister();
+			this.mSipAccount=null;
+		}
 		return START_STICKY;
 	}
 	
@@ -107,6 +117,14 @@ public class SipService extends Service {
 		intent.setAction(Constant.Action.SIP_SERVICE);
 		intent.setPackage("com.matteo.cc");
 		context.stopService(intent);
+	}
+	
+	public static void cancelRegister(Context context){
+		Intent intent=new Intent();
+		intent.setAction(Constant.Action.SIP_SERVICE);
+		intent.setPackage("com.matteo.cc");
+		intent.putExtra(START_TYPE_KEY, START_TYPE_CANCEL_REGISTER);
+		context.startService(intent);
 	}
 	
 	public void onIncomingCall(){

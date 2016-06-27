@@ -143,6 +143,17 @@ public class PjService implements SipAccount.IObserver, XCallInfo.IObserver {
 		this.mSipAccount.setObserver(this);
 		this.mSipAccount.refreshAccountConfig();
 	}
+	
+	public void cancelRegister(){
+		if(this.mSipAccount==null){
+			return;
+		}
+		//this.mSipAccount.modify(null);
+		int newState=Constant.SipAccountState.INACTIVATE;
+		this.setSipAccountState(newState);
+		this.mSipAccount.delete();
+		this.mSipAccount=null;
+	}
 
 	public int makeCall(String callee) {
 		if (this.mSipAccount == null

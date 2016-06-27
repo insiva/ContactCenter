@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -27,9 +26,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
     <permission android:name="com.matteo.cc.PERMISSION.SIP" />
-    
+
     <application
         android:name=".CcApplication"
         android:allowBackup="true"
@@ -60,7 +60,7 @@
         <activity
             android:name=".sip.ui.activity.CallActivity"
             android:launchMode="singleTask"
-            android:theme="@style/activity_call"  >
+            android:theme="@style/activity_call" >
         </activity>
         <activity
             android:name=".ui.activity.dialog.WaitingDialog"
@@ -70,13 +70,21 @@
             android:name=".ui.activity.dialog.ConfirmDialog"
             android:theme="@style/activity_dialog" >
         </activity>
-        <service android:name="com.matteo.cc.sip.service.SipService"
-            android:permission="com.matteo.cc.PERMISSION.SIP"
-            android:exported="true">
+
+        <service
+            android:name="com.matteo.cc.sip.service.SipService"
+            android:exported="true"
+            android:permission="com.matteo.cc.PERMISSION.SIP" >
             <intent-filter>
-                <action android:name="com.matteo.cc.sip.service.SIP_SERVICE"></action>
+                <action android:name="com.matteo.cc.sip.service.SIP_SERVICE" >
+                </action>
             </intent-filter>
         </service>
+        <receiver android:name="com.matteo.cc.sip.receiver.NetStateReceiver">  
+            <intent-filter>  
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>  
+            </intent-filter>  
+        </receiver> 
     </application>
 
 </manifest>

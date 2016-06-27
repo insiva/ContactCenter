@@ -102,6 +102,7 @@ public class SipAccount extends Account implements Parcelable {
 		accountConfig.getVideoConfig().setAutoShowIncoming(true);
 		try {
 			this.modify(accountConfig);
+			//this.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

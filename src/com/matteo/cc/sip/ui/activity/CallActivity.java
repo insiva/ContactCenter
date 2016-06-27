@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.matteo.cc.R;
 import com.matteo.cc.sip.constant.Constant;
+import com.matteo.cc.sip.manager.WakeManaer;
 import com.matteo.cc.sip.model.XCallInfo;
 import com.matteo.cc.sip.service.ISip;
 import com.matteo.cc.sip.ui.view.CallControlView;
@@ -98,6 +99,7 @@ public class CallActivity extends Activity implements FunctionsListener,
 		this.vCallControl.setCallControlListener(this);
 		this.mCallStateReceiver=new CallStateReceiver();
 		this.registerReceiver(this.mCallStateReceiver, this.mCallStateReceiver.mFilter);
+		WakeManaer.wakeUp(this);
 		this.init(this.getIntent());
 	}
 	
